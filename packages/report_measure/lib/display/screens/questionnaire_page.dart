@@ -119,6 +119,7 @@ class _QuessionnairePageState extends State<QuessionnairePage> {
       child: BlocListener<AssessmentBloc, AssessmentState>(
         listener: (context, state) {
           if (state is AssessmentCompleted) {
+            context.read<AssessmentBloc>().add(LoadAssessment());
             _bloc.clear();
           }
         },

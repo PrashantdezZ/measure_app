@@ -20,7 +20,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:hasura_connect/hasura_connect.dart' as h;
 import 'package:pinput/pinput.dart';
-import 'data/services/hasura_base_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 export 'data/models/session_info_model.dart';
 export 'package:logger/logger.dart';
@@ -55,9 +54,7 @@ part 'domain/entity/api_constant.dart';
 part 'domain/entity/assets_constant.dart';
 part 'domain/entity/ui_constants.dart';
 part 'data/models/property_model.dart';
-part 'data/services/api_service.dart';
-part 'data/services/api_base_services.dart';
-part 'data/services/auth_service.dart';
+
 
 part 'data/services/user_services.dart';
 part 'data/services/firestore_services.dart';
