@@ -20,7 +20,6 @@ class FirestoreService {
   Stream<List<AssessmentType>> getAssessmentType() {
     return _assessmentTypeCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
-        print(doc.data());
         return AssessmentType.fromMap(
           doc.id,
           doc.data() as Map<String, dynamic>,
@@ -120,17 +119,7 @@ class FirestoreService {
       yield assessmentsWithPatients;
     }
   }
-//  Stream<List<Questionnaire>> getQuestionnaire() {
-//     return _questionnaireCollection.snapshots().map((snapshot) {
-//       return snapshot.docs.map((doc) {
-//         print(doc.data());
-//         return Questionnaire.fromMap(
 
-//           doc.data() as Map<String, dynamic>,doc.id
-//         );
-//       }).toList();
-//     });
-//   }
   Future<Questionnaire?> getQuestionnaire(String assessmentDocId) async {
     QuerySnapshot questionnaireSnapshot = await _questionnaireCollection
         .where('assessment_id',
@@ -145,21 +134,4 @@ class FirestoreService {
     return null;
   }
 
-  // Future<void> addTodo(Todo todo) {
-  //   return _todosCollection.add({
-  //     'title': todo.title,
-  //     'completed': todo.completed,
-  //   });
-  // }
-
-  // Future<void> updateTodo(Todo todo) {
-  //   return _todosCollection.doc(todo.id).update({
-  //     'title': todo.title,
-  //     'completed': todo.completed,
-  //   });
-  // }
-
-  // Future<void> deleteTodo(String todoId) {
-  //   return _todosCollection.doc(todoId).delete();
-  // }
 }

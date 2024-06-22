@@ -8,16 +8,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // @override
-  // void initState() {
-  //             context.read<AssessmentBloc>().add(LoadAssessment());
-    
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
+ 
   @override
   Widget build(BuildContext context) {
-    context.read<AssessmentBloc>().add(LoadAssessment());
     return Container(
         color: kBg,
         child: SafeArea(
