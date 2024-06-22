@@ -16,6 +16,7 @@ class _LandingScreenState extends State<LandingScreen> {
     //  QuessionnairePage(),
      NewAssessmentPage(),
      NewAssessmentPage(),
+     NewAssessmentPage(),
   ];
 
   var destinations = [
