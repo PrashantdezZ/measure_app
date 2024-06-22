@@ -13,17 +13,16 @@ dependencies:
   flutter_bloc: ^8.1.3
   bloc: ^8.1.2
   equatable: ^2.0.5
-  dio: 
-  logger:
-  flutter_screenutil: 
-  go_router: 
+  dio: ^5.3.3
+  logger: ^2.0.2+1
+  flutter_screenutil: ^5.7.0
+  go_router: ^12.0.0
   google_fonts: ^5.1.0
-  flutter_riverpod: 
+  
   flutter_svg: 
-  carousel_slider: 
+  
   smooth_page_indicator: ^1.0.0+2
-  http:
-  jwt_decoder:
+  
   hasura_connect: ^5.0.0+3
   shared_preferences: ^2.2.2
   pinput: ^4.0.0

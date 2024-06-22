@@ -16,7 +16,7 @@ To get started with this project, follow these steps:
 ### Prerequisites
 
 - Ensure you have Flutter installed. If not, follow the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
-- Ensure you have Dart SDK 3.3.0 installed.
+- Ensure you have Dart SDK 3.3.0 or greater installed.
 
 ### Installing
 
