@@ -12,8 +12,6 @@ class _LandingScreenState extends State<LandingScreen> {
   int index = 0;
   final List<Widget> screens = [
     const HomePage(),
-    // const AssessmentDetail(),
-    //  QuessionnairePage(),
      NewAssessmentPage(),
      NewAssessmentPage(),
      NewAssessmentPage(),

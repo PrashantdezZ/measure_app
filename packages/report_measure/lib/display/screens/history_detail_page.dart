@@ -131,14 +131,24 @@ class _AssessmentDetailState extends State<AssessmentDetail> {
                                   onTap: () {
                                     toggleExpanded();
                                   },
-                                  child:
-                                      SvgPicture.asset(Assets.icons.arrow_up))
+                                  child: SizedBox(
+                                    height: 40,
+                                    width: 30,
+                                    child: SvgPicture.asset(
+                                      Assets.icons.arrow_up,
+                                    ),
+                                  ))
                               : GestureDetector(
                                   onTap: () {
                                     toggleExpanded();
                                   },
-                                  child:
-                                      SvgPicture.asset(Assets.icons.arrow_down))
+                                  child: SizedBox(
+                                    height: 40,
+                                    width: 30,
+                                    child: SvgPicture.asset(
+                                      Assets.icons.arrow_down,
+                                    ),
+                                  ))
                         ],
                       ),
                       isExpanded
