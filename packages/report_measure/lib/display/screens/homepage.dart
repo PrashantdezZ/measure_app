@@ -8,43 +8,59 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
- 
+   late AssessmentBloc _assessmentBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _assessmentBloc = AssessmentBloc(FirestoreService())..add(LoadAssessment());
+  }
+
+  Future<void> _refreshAssessments() async {
+    _assessmentBloc.add(LoadAssessment());
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: kBg,
-        child: SafeArea(
-            child: Scaffold(
-          backgroundColor: kBg,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: GradientShadowContainer(
-            onTap: () {
-              print("routes");
-              context.push(Routes.newAssessment);
-            },
-            text: "+New assessment",
-          ),
-          body: RefreshIndicator(
-            onRefresh: () async {
-              context.read<AssessmentBloc>().add(LoadAssessment());
-              return;
-            },
-            child: SingleChildScrollView(
-                child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  const HomePageHeader(),
-                  sizedBoxHeight(38),
-                  HeadingWithSeeMore(
-                    heading: "Recent History",
-                    onTap: () {},
-                  ),
-                  BlocProvider<AssessmentBloc>(
-                    create: (context) => AssessmentBloc(FirestoreService())
-                      ..add(LoadAssessment()),
-                    child: BlocBuilder<AssessmentBloc, AssessmentState>(
+    var bloc = context.read<AssessmentBloc>();
+    return BlocProvider(
+      create: (context) =>_assessmentBloc,
+      child: Container(
+          color: kBg,
+          child: SafeArea(
+              child: Scaffold(
+            backgroundColor: kBg,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: GradientShadowContainer(
+              onTap: () async {
+                bloc.add(ResetState());
+                final result = await context.push(Routes.newAssessment);
+                if (result == true) {
+                   _refreshAssessments();
+                }
+              },
+              text: "+New assessment",
+            ),
+            body: RefreshIndicator(
+              onRefresh: () async {
+                context.read<AssessmentBloc>().add(LoadAssessment());
+                return;
+              },
+              child: SingleChildScrollView(
+                  child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    const HomePageHeader(),
+                    sizedBoxHeight(38),
+                    HeadingWithSeeMore(
+                      heading: "Recent History",
+                      onTap: () {},
+                    ),
+                    BlocBuilder<AssessmentBloc, AssessmentState>(
+                      // buildWhen: (previous, current) {
+                      //   if(previous )
+                      // },
                       builder: (context, state) {
                         print(state);
                         if (state is AssessmentLoading) {
@@ -82,16 +98,12 @@ class _HomePageState extends State<HomePage> {
                         return const Center(child: CircularProgressIndicator());
                       },
                     ),
-                  ),
-                  sizedBoxHeight(30),
-                  HeadingWithSeeMore(
-                    heading: "Recent Assessments",
-                    onTap: () {},
-                  ),
-                  BlocProvider<AssessmentBloc>(
-                    create: (context) => AssessmentBloc(FirestoreService())
-                      ..add(LoadAssessment()),
-                    child: BlocBuilder<AssessmentBloc, AssessmentState>(
+                    sizedBoxHeight(30),
+                    HeadingWithSeeMore(
+                      heading: "Recent Assessments",
+                      onTap: () {},
+                    ),
+                    BlocBuilder<AssessmentBloc, AssessmentState>(
                       builder: (context, state) {
                         // print(state);
                         if (state is AssessmentLoading) {
@@ -128,12 +140,12 @@ class _HomePageState extends State<HomePage> {
                         return const Center(child: CircularProgressIndicator());
                       },
                     ),
-                  ),
-                  sizedBoxHeight(80)
-                ],
-              ),
-            )),
-          ),
-        )));
+                    sizedBoxHeight(80)
+                  ],
+                ),
+              )),
+            ),
+          ))),
+    );
   }
 }

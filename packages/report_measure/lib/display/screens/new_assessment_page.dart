@@ -58,7 +58,7 @@ class _NewAssessmentPageState extends State<NewAssessmentPage> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (didPop) => context.pop(),
+      onPopInvoked: (didPop) => context.pop(true),
       child: BlocListener<QuestionnaireBloc, QuestionnaireState>(
         listener: (context, state) {
           if (state is QuestionnaireLoading) {
@@ -117,7 +117,7 @@ class _NewAssessmentPageState extends State<NewAssessmentPage> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    context.pop();
+                                    context.pop(true);
                                   },
                                   child: SvgPicture.asset(
                                     Assets.icons.back_arrow,

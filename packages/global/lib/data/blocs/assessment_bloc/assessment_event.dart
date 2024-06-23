@@ -33,6 +33,7 @@ class StartAssessment extends AssessmentEvent{
     ];
 }
 class LoadAssessment extends AssessmentEvent{}
+class ResetState extends AssessmentEvent{}
 class LoadRecentAssessment extends AssessmentEvent{}
 class LoadAssessmentType extends AssessmentEvent{}
 class RefreshAssessment extends AssessmentEvent{

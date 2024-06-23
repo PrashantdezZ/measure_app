@@ -37,6 +37,9 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
     on<RefreshAssessmentType>((event, emit) async {
       emit(AssessmentTypeLoaded(event.assessmentType));
     });
+    on<ResetState>((event, emit) async {
+      emit(AssessmentInitial());
+    });
     on<StartAssessment>((event, emit) async {
       try {
         emit(AssessmentStarted());
@@ -54,5 +57,6 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
         emit(AssessmentFailed(e.toString()));
       }
     });
+    
   }
 }
